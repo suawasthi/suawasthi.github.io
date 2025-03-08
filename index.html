@@ -7,6 +7,9 @@
     <meta name="description" content="Discover thoughtful gifting ideas and inspiration at Gift Guru. Find the perfect gift for any occasion, age, or interest.">
     <meta name="keywords" content="gifting, gift ideas, thoughtful gifts, personalized gifts, gift inspiration">
     <meta name="author" content="Gift Guru">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="preload" href="styles.css" as="style">
@@ -150,14 +153,6 @@
     <footer>
         <p>© 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
-    <script src="scripts.js" defer></script>
-    <script>
-        // Load header and navigation
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
-    </script>
+    <script src="scripts.js" defer nonce="abc123"></script>
 </body>
 </html>

@@ -1,0 +1,172 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    background-color: #d4af37;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+nav {
+    background-color: #fff;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0; /* Adjust based on header height */
+    width: 100%;
+    z-index: 999;
+}
+nav a {
+    color: #d4af37; /* Changed to golden */
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 1.5rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #b8860b; /* Darker golden for hover */
+}
+.content {
+    margin-top: 6rem; /* Adjust based on header and nav height */
+    padding: 2rem;
+}
+.container {
+    text-align: center;
+    padding: 2rem;
+    flex: 1;
+}
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+.suggestion-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.suggestion-card:hover {
+    transform: translateY(-5px);
+}
+.suggestion-card h3 {
+    font-size: 1.5rem;
+    color: #d4af37;
+    margin: 0.5rem 0;
+}
+.suggestion-card p {
+    font-size: 1rem;
+    color: #666;
+}
+button {
+    background: #d4af37;
+    padding: 14px 22px;
+    margin: 12px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 18px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+button:hover {
+    background: #b8860b;
+    transform: scale(1.05);
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+    .suggestion-card {
+        padding: 1rem;
+    }
+    button {
+        padding: 10px 18px;
+        font-size: 16px;
+    }
+}
+@media (min-width: 601px) {
+    .suggestions {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .suggestion-card {
+        padding: 1.5rem;
+    }
+    button {
+        padding: 14px 22px;
+        font-size: 18px;
+    }
+}
+.stay-in-touch {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+}
+.stay-in-touch h2 {
+    color: #d4af37;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.stay-in-touch p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+.stay-in-touch form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.stay-in-touch input[type="email"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+.stay-in-touch button {
+    background-color: #d4af37;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.stay-in-touch button:hover {
+    background-color: #b8860b;
+}

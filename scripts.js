@@ -5,6 +5,8 @@ function search() {
 
 function animateSearchPlaceholder() {
     const searchInput = document.getElementById('search-input');
+    if (!searchInput) return; // Add this check
+
     const placeholders = ["Birthday Theme", "Wedding Gift", "Farewell"];
     let index = 0;
 
@@ -119,9 +121,11 @@ function nextQuestion() {
 
 // Suggestions page script
 document.addEventListener('DOMContentLoaded', () => {
+    const suggestionsContainer = document.getElementById('suggestions');
+    if (!suggestionsContainer) return; // Add this check
+
     const selections = JSON.parse(localStorage.getItem('selections'));
     const suggestions = getSuggestions(selections);
-    const suggestionsContainer = document.getElementById('suggestions');
     suggestions.forEach(suggestion => {
         const card = document.createElement('div');
         card.className = 'suggestion-card';
@@ -200,3 +204,26 @@ function getSuggestions(selections) {
 function changeCriteria() {
     location.href = "guide.html"; // Redirect back to guide page
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Add event listener for the start guide button
+    const startGuideButton = document.getElementById('start-guide');
+    if (startGuideButton) {
+        startGuideButton.addEventListener('click', startQuiz);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Load header and navigation
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        });
+
+    // Add event listener for the start guide button
+    const startGuideButton = document.getElementById('start-guide');
+    if (startGuideButton) {
+        startGuideButton.addEventListener('click', startQuiz);
+    }
+});
