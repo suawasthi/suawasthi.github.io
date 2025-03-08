@@ -7,19 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Contact Gift Guru</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#trending">Trending Ideas</a>
-        <a href="guide.html">Gifting Guide</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-        <input type="text" placeholder="Search..." id="search-input">
-        <button onclick="search()">Search</button>
-    </nav>
+    <div id="header-container"></div>
     <div class="content">
         <div class="container">
             <h2>Get in Touch</h2>
@@ -38,5 +26,14 @@
     <footer>
         <p>© 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
+    <script src="scripts.js" defer></script>
+    <script>
+        // Load header and navigation
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

@@ -188,6 +188,37 @@ footer p {
     margin: 0;
     font-size: 0.9rem;
 }
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.contact-form input,
+.contact-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+.contact-form button {
+    background-color: #d4af37;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.contact-form button:hover {
+    background-color: #b8860b;
+}
 @media (max-width: 600px) {
     header h1 { font-size: 2rem; }
     .trending { grid-template-columns: 1fr; }
