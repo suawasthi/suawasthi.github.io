@@ -99,6 +99,8 @@ nav button:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    width: 100%;
+        
 }
 .trend-card {
     background-color: white;
@@ -107,9 +109,30 @@ nav button:hover {
     padding: 1.5rem;
     text-align: center;
     transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 .trend-card:hover {
     transform: translateY(-5px);
+}
+.trend-card .details {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(212, 175, 55, 0.8); /* Golden color with opacity */
+    color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: left;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+.trend-card:hover .details {
+    display: block;
+    opacity: 1;
 }
 .trend-card h3 {
     font-size: 1.5rem;
@@ -119,6 +142,23 @@ nav button:hover {
 .trend-card p {
     font-size: 1rem;
     color: #666;
+}
+.trend-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #d4af37;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100%;
+    pointer-events: none; /* Disable the button */
+    opacity: 0.5; /* Make it look disabled */
+}
+.trend-card a:hover {
+    background-color: #b8860b;
 }
 .guide-tab {
     text-align: center;
