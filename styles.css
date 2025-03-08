@@ -4,7 +4,7 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
-    line-height: 1.7; 
+    line-height: 1.7;
 }
 header {
     background-color: #d4af37;
@@ -77,8 +77,6 @@ nav button:hover {
     margin: 10 auto;
     z-index: 1002;
     padding-top: calc(8rem); /* Adjust padding to prevent overlap */
-
-
 }
 .philosophy {
     top: 10rem;
