@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift Guru - Gifting Guide</title>
+    <meta name="description" content="Explore our comprehensive gifting guide at Gift Guru. Get personalized gift recommendations based on your preferences.">
+    <meta name="keywords" content="gifting guide, personalized gifts, gift recommendations, thoughtful gifts">
+    <meta name="author" content="Gift Guru">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
+            margin: 1000;
             padding: 0;
             background: url('./pexels-wordsurfer-842876.jpg') no-repeat center center/cover;
             color: #333;
@@ -17,7 +20,6 @@
             flex-direction: column;
         }
         header {
-            background: url('./festive-header.jpg') no-repeat center center/cover; /* Festive background */
             color: white;
             text-align: center;
             padding: 2rem 1rem;
@@ -32,6 +34,10 @@
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0; /* Adjust based on header height */
+            width: 100%;
+            z-index: 999;
         }
         nav a {
             color: #d4af37; /* Changed to golden */
@@ -160,6 +166,53 @@
                 font-size: 18px;
             }
         }
+        .stay-in-touch {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .stay-in-touch h2 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .stay-in-touch p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stay-in-touch form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .stay-in-touch input[type="email"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+        .stay-in-touch button {
+            background-color: #d4af37;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Ensure text doesn't overflow */
+        }
+        .stay-in-touch button:hover {
+            background-color: #b8860b;
+        }
+        .content {
+            margin-top: 6rem; /* Adjust based on header and nav height */
+            padding: 2rem;
+        }
     </style>
 </head>
 <body id="body">
@@ -167,9 +220,9 @@
         <h1>Gift Guru</h1>
     </header>
     <nav>
-        <a href="index.html"><img src="home-icon.png" alt="Home">Home</a>
-        <a href="index.html#trending"><img src="trending-icon.png" alt="Trending">Trending Ideas</a>
-        <a href="guide.html"><img src="guide-icon.png" alt="Guide">Gifting Guide</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#trending">Trending Ideas</a>
+        <a href="guide.html">Gifting Guide</a>
     </nav>
     <div class="container" id="quiz-container">
         <div id="start-screen">
@@ -180,18 +233,18 @@
             <div id="options"></div>
         </div>
     </div>
+   
     <footer>
         <p>© 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
 
     <script>
         const questions = [
-            { question: "Which gender are you looking to gift?", options: ["Male", "Female", "Skip"], background: './festive-male-female.jpg' },
-            { question: "What age group are you looking to gift?", options: ["Under 10", "Under 20", "Under 30"], background: './festive-age-group.jpg' },
-            { question: "What is the occasion?", options: ["Birthday", "Anniversary", "Festival"], background: './festive-occasion.jpg' },
-            { question: "What is the recipient's hobby?", options: ["Reading", "Sports", "Music", "Art"], background: './festive-hobby.jpg' },
-            { question: "What is your budget?", options: ["Under $20", "$20-$50", "$50-$100", "Above $100"], background: './festive-budget.jpg' },
-            { question: "Do you prefer a handmade or store-bought gift?", options: ["Handmade", "Store-bought", "No preference"], background: './festive-handmade-store.jpg' }
+            { question: "Which gender are you looking to gift?", options: ["Male", "Female", "Skip"], background: './pexels-wordsurfer-842876.jpg' },
+            { question: "What age group are you looking to gift?", options: ["Under 10", "Under 20", "Under 30"], background: './pexels-wordsurfer-842876.jpg' },
+            { question: "What is the occasion?", options: ["Birthday", "Anniversary", "Festival"], background: './pexels-wordsurfer-842876.jpg' },
+            { question: "What is the recipient's hobby?", options: ["Reading", "Sports", "Music", "Art"], background: './pexels-wordsurfer-842876.jpg' },
+            { question: "What is your budget?", options: ["Under $20", "$20-$50", "$50-$100", "Above $100"], background: './pexels-wordsurfer-842876.jpg' },
         ];
         let currentIndex = 0;
         const selections = {
@@ -200,7 +253,7 @@
             "What is the occasion?": "Birthday",
             "What is the recipient's hobby?": "Reading",
             "What is your budget?": "$20-$50",
-            "Do you prefer a handmade or store-bought gift?": "No preference"
+        
         };
 
         function startQuiz() {

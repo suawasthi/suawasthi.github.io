@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Bliss - Suggestions</title>
+    <title>Gift Guru - Gift Suggestions</title>
+    <meta name="description" content="Get personalized gift suggestions based on your preferences at Gift Guru. Find the perfect gift for any occasion, age, or interest.">
+    <meta name="keywords" content="gift suggestions, personalized gifts, gift ideas, thoughtful gifts">
+    <meta name="author" content="Gift Guru">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -26,6 +29,31 @@
             margin: 0;
             font-size: 2.5rem;
             letter-spacing: 1px;
+        }
+        nav {
+            background-color: #fff;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0; /* Adjust based on header height */
+            width: 100%;
+            z-index: 999;
+        }
+        nav a {
+            color: #d4af37; /* Changed to golden */
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 1.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #b8860b; /* Darker golden for hover */
+        }
+        .content {
+            margin-top: 6rem; /* Adjust based on header and nav height */
+            padding: 2rem;
         }
         .container {
             text-align: center;
@@ -112,17 +140,63 @@
                 font-size: 18px;
             }
         }
+        .stay-in-touch {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+        .stay-in-touch h2 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .stay-in-touch p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stay-in-touch form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .stay-in-touch input[type="email"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+        .stay-in-touch button {
+            background-color: #d4af37;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .stay-in-touch button:hover {
+            background-color: #b8860b;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Gift Guru</h1>
     </header>
-    <div class="container">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#trending">Trending Ideas</a>
+        <a href="guide.html">Gifting Guide</a>
+    </nav>
+    <div class="container content">
         <h2>Suggested Gifts</h2>
         <div class="suggestions" id="suggestions"></div>
         <button onclick="changeCriteria()">Change Criteria</button>
     </div>
+   
     <footer>
         <p>© 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
