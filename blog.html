@@ -3,61 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Gift Guru</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <link rel="stylesheet" href="styles.css">
+    <title>Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bg-golden-500 {
+            background-color: #4fa095; /* Golden color */
+        }
+        .text-golden-500 {
+            color: #FFD700; /* Golden color */
+        }
+        .blog-card {
+            border: 1px solid #e2e8f0; /* Add border to tiles */
+        }
+    </style>
 </head>
-<body>
-    <div id="header-container"></div>
-    <div class="content">
-        <div class="container">
-            <h2>Latest Articles</h2>
-            <article>
-                <h3>Top 10 Personalized Gifts for 2025</h3>
-                <p>Discover the top 10 personalized gifts that are trending in 2025. From customized journals to personalized mugs, find the perfect gift for your loved ones.</p>
-                <a href="https://medium.com/@giftguru/top-10-personalized-gifts-for-2025" target="_blank">Read on Medium</a>
-            </article>
-            <article>
-                <h3>Eco-Friendly Gifting Ideas</h3>
-                <p>Learn about eco-friendly gifting ideas that are perfect for environmentally conscious individuals. Explore reusable straws, bags, and more.</p>
-                <a href="https://medium.com/@giftguru/eco-friendly-gifting-ideas" target="_blank">Read on Medium</a>
-            </article>
-            <article>
-                <h3>DIY Craft Boxes for Kids</h3>
-                <p>Find out how DIY craft boxes can be a great gift for kids and hobbyists. Get tips on creating your own craft boxes and where to buy them.</p>
-                <a href="https://medium.com/@giftguru/diy-craft-boxes-for-kids" target="_blank">Read on Medium</a>
-            </article>
-            <article>
-                <h3>5 Unique Wedding Gift Ideas</h3>
-                <p>Looking for a unique wedding gift? Check out these five creative and thoughtful ideas that will make any couple's special day even more memorable.</p>
-                <a href="https://medium.com/@giftguru/5-unique-wedding-gift-ideas" target="_blank">Read on Medium</a>
-            </article>
-            <article>
-                <h3>How to Choose the Perfect Birthday Gift</h3>
-                <p>Choosing the perfect birthday gift can be challenging. Follow our guide to find a gift that will delight and surprise the birthday person.</p>
-                <a href="https://medium.com/@giftguru/how-to-choose-the-perfect-birthday-gift" target="_blank">Read on Medium</a>
-            </article>
-            <article>
-                <h3>Top 5 Gifts for Tech Enthusiasts</h3>
-                <p>Tech enthusiasts can be hard to shop for. Here are the top 5 gifts that will impress any tech lover, from smart gadgets to innovative accessories.</p>
-                <a href="https://medium.com/@giftguru/top-5-gifts-for-tech-enthusiasts" target="_blank">Read on Medium</a>
-            </article>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-golden-500 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <h1 class="text-3xl font-bold">Gift Guru</h1>
         </div>
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-white hover:underline"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="text-white hover:underline"><i class="fas fa-lightbulb"></i> Trending Ideas</a></li>
+                <li><a href="#" class="text-white hover:underline"><i class="fas fa-gift"></i> Gifting Guide</a></li>
+                <li><a href="about.html" class="text-white hover:underline"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="contact.html" class="text-white hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="blog.html" class="text-white hover:underline"><i class="fas fa-blog"></i> Blog</a></li>
+            </ul>
+        </nav>
+        <div class="md:hidden flex items-center">
+            <button id="menu-button" class="text-white focus:outline-none mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <button id="search-button" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden md:flex items-center">
+            <input type="text" placeholder="Search..." class="p-2 rounded">
+            <button class="bg-yellow-600 text-white p-2 rounded ml-2">Search</button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="hidden md:hidden bg-golden-500 text-white">
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="index.html" class="hover:underline"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="hover:underline"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="services.html" class="hover:underline"><i class="fas fa-gift"></i> Services</a></li>
+            <li><a href="contact.html" class="hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
     </div>
-    <footer>
-        <p>© 2025 Gift Guru. All Rights Reserved.</p>
+    <div id="mobile-search" class="hidden md:hidden p-4">
+        <input type="text" placeholder="Search..." class="p-2 rounded w-full">
+    </div>
+    <main class="p-4 flex-grow">
+        <section class="mb-8 text-center">
+            <h2 class="text-3xl font-semibold mb-4 text-golden-500">Blog</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow blog-card">
+                    <h3 class="text-xl font-bold mb-2"><a href="blog-post1.html" class="hover:underline">Blog Post Title 1</a></h3>
+                    <p class="text-lg">This is a short description of the first blog post. Click to read more.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow blog-card">
+                    <h3 class="text-xl font-bold mb-2"><a href="blog-post2.html" class="hover:underline">Blog Post Title 2</a></h3>
+                    <p class="text-lg">This is a short description of the second blog post. Click to read more.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow blog-card">
+                    <h3 class="text-xl font-bold mb-2"><a href="blog-post3.html" class="hover:underline">Blog Post Title 3</a></h3>
+                    <p class="text-lg">This is a short description of the third blog post. Click to read more.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow blog-card">
+                    <h3 class="text-xl font-bold mb-2"><a href="blog-post4.html" class="hover:underline">Blog Post Title 4</a></h3>
+                    <p class="text-lg">This is a short description of the fourth blog post. Click to read more.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow blog-card">
+                    <h3 class="text-xl font-bold mb-2"><a href="blog-post5.html" class="hover:underline">Blog Post Title 5</a></h3>
+                    <p class="text-lg">This is a short description of the fifth blog post. Click to read more.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-golden-500 text-white p-4 text-center">
+        <p>&copy; 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
-    <script src="scripts.js" defer></script>
     <script>
-        // Load header and navigation
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        document.getElementById('search-button').addEventListener('click', function() {
+            var search = document.getElementById('mobile-search');
+            search.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>

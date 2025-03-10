@@ -3,19 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Gift Guru</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <link rel="stylesheet" href="styles.css">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bg-golden-500 {
+            background-color: #4fa095; /* Golden color */
+        }
+        .text-golden-500 {
+            color: #FFD700; /* Golden color */
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form label {
+            font-weight: bold;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+        .contact-form button {
+            background-color: #d4af37;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    <div id="header-container"></div>
-    <div class="content">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <p>If you have any questions, suggestions, or feedback, we'd love to hear from you. Please fill out the form below, and we'll get back to you as soon as possible.</p>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-golden-500 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <h1 class="text-3xl font-bold">Gift Guru</h1>
+        </div>
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-white hover:underline"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="text-white hover:underline"><i class="fas fa-lightbulb"></i> Trending Ideas</a></li>
+                <li><a href="guide.html" class="text-white hover:underline"><i class="fas fa-gift"></i> Gifting Guide</a></li>
+                <li><a href="about.html" class="text-white hover:underline"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="contact.html" class="text-white hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="blog.html" class="text-white hover:underline"><i class="fas fa-blog"></i> Blog</a></li>
+            </ul>
+        </nav>
+        <div class="md:hidden flex items-center">
+            <button id="menu-button" class="text-white focus:outline-none mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <button id="search-button" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden md:flex items-center">
+            <input type="text" placeholder="Search..." class="p-2 rounded">
+            <button class="bg-yellow-600 text-white p-2 rounded ml-2">Search</button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="hidden md:hidden bg-golden-500 text-white">
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="index.html" class="hover:underline"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="hover:underline"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="services.html" class="hover:underline"><i class="fas fa-gift"></i> Services</a></li>
+            <li><a href="contact.html" class="hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+    <div id="mobile-search" class="hidden md:hidden p-4">
+        <input type="text" placeholder="Search..." class="p-2 rounded w-full">
+    </div>
+    <div class="content p-4 flex-grow">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-4 text-golden-500">Get in Touch</h2>
+            <p class="text-lg mb-4">If you have any questions, suggestions, or feedback, we'd love to hear from you. Please fill out the form below, and we'll get back to you as soon as possible.</p>
             <form class="contact-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -27,17 +94,19 @@
             </form>
         </div>
     </div>
-    <footer>
+    <footer class="bg-golden-500 text-white p-4 text-center">
         <p>© 2025 Gift Guru. All Rights Reserved.</p>
     </footer>
     <script src="scripts.js" defer></script>
     <script>
-        // Load header and navigation
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        document.getElementById('search-button').addEventListener('click', function() {
+            var search = document.getElementById('mobile-search');
+            search.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>

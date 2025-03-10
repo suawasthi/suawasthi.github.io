@@ -3,156 +3,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Guru - Thoughtful Gifting Ideas and Inspiration</title>
-    <meta name="description" content="Discover thoughtful gifting ideas and inspiration at Gift Guru. Find the perfect gift for any occasion, age, or interest.">
-    <meta name="keywords" content="gifting, gift ideas, thoughtful gifts, personalized gifts, gift inspiration">
-    <meta name="author" content="Gift Guru">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="scripts.js" as="script">
-    <meta http-equiv="Cache-Control" content="max-age=31536000, public">
-    <meta http-equiv="Expires" content="Thu, 31 Dec 2037 23:55:55 GMT">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bg-golden-500 {
+            background-color: #4fa095; /* Golden color */
+        }
+        .text-golden-500 {
+            color: #FFD700; /* Golden color */
+        }
+        .trend-card .details {
+            display: none;
+        }
+        .trend-card:hover .details {
+            display: block;
+        }
+        .trend-card:hover p {
+            display: none;
+        }
+        .buy-button {
+            background-color: #FFD700;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .buy-button:hover {
+            background-color: #d4af37;
+        }
+        .trend-card {
+            border: 1.3px solid #e2e8f0; /* Add border to tiles */
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            opacity: 0.8;
+            transition: opacity 1s ease;
+        }
+        .carousel-item p {
+            font-size: 1.25rem;
+            text-align: center;
+            padding: 1rem;
+            font-style: italic; /* Make text italic */
+        }
+        .carousel-item.active {
+            opacity: 1;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            background-color: #fff; /* Add background color to prevent background showing */
+        }
+        .slides {
+            display: none;
+            width: 100%;
+        }
+        .slides img {
+            width: 100%;
+            height: 400px; /* Fixed height */
+            object-fit: cover;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+            transform: translateY(-50%);
+        }
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .dot-container {
+            position: absolute;
+            bottom: 6%;
+            width: 100%;
+            text-align: center;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: white;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .dot-active, .dot:hover {
+            background-color: #717171;
+        }
+    </style>
 </head>
-<body>
-    <div id="header-container"></div>
-    <div class="content">
-        <div class="container">
-            <div class="philosophy">
-                <h2>The Joy of Gifting</h2>
-                <p>Gifting is more than just giving—it's about connection, thoughtfulness, and spreading happiness. Whether it’s a small token or a grand gesture, the best gifts reflect the recipient’s personality, age, and interests. At Gift Guru, we believe simplicity and care create the most memorable moments.</p>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-golden-500 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <h1 class="text-3xl font-bold">Gift Guru</h1>
+        </div>
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-white hover:underline"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="text-white hover:underline"><i class="fas fa-lightbulb"></i> Trending Ideas</a></li>
+                <li><a href="guide.html" class="text-white hover:underline"><i class="fas fa-gift"></i> Gifting Guide</a></li>
+                <li><a href="about.html" class="text-white hover:underline"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="contact.html" class="text-white hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="blog.html" class="text-white hover:underline"><i class="fas fa-blog"></i> Blog</a></li>
+            </ul>
+        </nav>
+        <div class="md:hidden flex items-center">
+            <button id="menu-button" class="text-white focus:outline-none mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <button id="search-button" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden md:flex items-center">
+            <input type="text" placeholder="Search..." class="p-2 rounded">
+            <button class="bg-yellow-600 text-white p-2 rounded ml-2">Search</button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="hidden md:hidden bg-golden-500 text-white">
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="index.html" class="hover:underline"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="hover:underline"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="services.html" class="hover:underline"><i class="fas fa-gift"></i> Services</a></li>
+            <li><a href="contact.html" class="hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+    <div id="mobile-search" class="hidden md:hidden p-4">
+        <input type="text" placeholder="Search..." class="p-2 rounded w-full">
+    </div>
+    <main class="p-4 flex-grow">
+        <section class="mb-8 text-center">
+            <h2 class="text-3xl font-semibold mb-4 text-golden-500">The Joy of Gifting</h2>
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <p>Gifting is more than just giving—it's about connection, thoughtfulness, and spreading happiness.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <p>Whether it's a small token or a grand gesture, the best gifts reflect the recipient's personality, age, and interests.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <p>At Gift Guru, we believe simplicity and care create the most memorable moments.</p>
+                    </div>
+                </div>
             </div>
-            <div class="trending" id="trending">
-                <h2>Trending Gifting Ideas</h2>
-                <div class="trend-card">
-                    <h3>Customized Journals</h3>
+        </section>
+        <section class="mb-8 text-center">
+            <div class="slideshow-container">
+                <div class="slides fade">
+                    <img src="gift1.jpg" alt="Gift 1">
+                </div>
+                <div class="slides fade">
+                    <img src="gift2.jpg" alt="Gift 2">
+                </div>
+                <div class="slides fade">
+                    <img src="gift3.jpg" alt="Gift 3">
+                </div>
+                <div class="slides fade">
+                    <img src="gift4.jpg" alt="Gift 4">
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Trending Gifting Ideas</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Customized Journals</h3>
                     <p>Personalized notebooks with names or quotes—perfect for teens and adults.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Teens and Adults</p>
                         <p><strong>Details:</strong> Great for birthdays or special occasions.</p>
-                        <a href="https://example.com/customized-journals" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/customized-journals" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Eco-Friendly Kits</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Eco-Friendly Kits</h3>
                     <p>Reusable straws, bags, or planters—great for all ages.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> All Ages</p>
                         <p><strong>Details:</strong> Ideal for eco-conscious individuals.</p>
-                        <a href="https://example.com/eco-friendly-kits" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/eco-friendly-kits" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>DIY Craft Boxes</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">DIY Craft Boxes</h3>
                     <p>Pre-packed supplies for kids or hobbyists.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Kids and Hobbyists</p>
                         <p><strong>Details:</strong> Perfect for creative activities.</p>
-                        <a href="https://example.com/diy-craft-boxes" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/diy-craft-boxes" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Self-Care Sets</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Self-Care Sets</h3>
                     <p>Candles, bath bombs, and teas—trending for wellness lovers.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Wellness Lovers</p>
                         <p><strong>Details:</strong> Ideal for relaxation and self-care.</p>
-                        <a href="https://example.com/self-care-sets" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/self-care-sets" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Personalized Mugs</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Personalized Mugs</h3>
                     <p>Custom mugs with names or photos—great for coffee and tea lovers.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Coffee and Tea Lovers</p>
                         <p><strong>Details:</strong> Perfect for any occasion.</p>
-                        <a href="https://example.com/personalized-mugs" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/personalized-mugs" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Smart Home Gadgets</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Smart Home Gadgets</h3>
                     <p>Devices like smart speakers and lights—perfect for tech enthusiasts.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Tech Enthusiasts</p>
                         <p><strong>Details:</strong> Ideal for home automation.</p>
-                        <a href="https://example.com/smart-home-gadgets" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/smart-home-gadgets" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Fitness Gear</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Fitness Gear</h3>
                     <p>Yoga mats, resistance bands, and more—ideal for fitness buffs.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Fitness Buffs</p>
                         <p><strong>Details:</strong> Great for maintaining a healthy lifestyle.</p>
-                        <a href="https://example.com/fitness-gear" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/fitness-gear" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Cooking Kits</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Cooking Kits</h3>
                     <p>Meal kits and cooking tools—great for home chefs.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Home Chefs</p>
                         <p><strong>Details:</strong> Perfect for cooking enthusiasts.</p>
-                        <a href="https://example.com/cooking-kits" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/cooking-kits" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
                 <!-- Additional trending ideas -->
-                <div class="trend-card">
-                    <h3>Travel Accessories</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Travel Accessories</h3>
                     <p>Essential travel kits and accessories—perfect for frequent travelers.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Frequent Travelers</p>
                         <p><strong>Details:</strong> Ideal for vacations and business trips.</p>
-                        <a href="https://example.com/travel-accessories" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/travel-accessories" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Pet Care Kits</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Pet Care Kits</h3>
                     <p>Grooming and care kits for pets—great for pet owners.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Pet Owners</p>
                         <p><strong>Details:</strong> Perfect for keeping pets healthy and happy.</p>
-                        <a href="https://example.com/pet-care-kits" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/pet-care-kits" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Art Supplies</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Art Supplies</h3>
                     <p>High-quality art supplies—ideal for artists and hobbyists.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Artists and Hobbyists</p>
                         <p><strong>Details:</strong> Great for creative projects and artwork.</p>
-                        <a href="https://example.com/art-supplies" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/art-supplies" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
-                <div class="trend-card">
-                    <h3>Gardening Kits</h3>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Gardening Kits</h3>
                     <p>Complete gardening kits—perfect for gardening enthusiasts.</p>
-                    <div class="details">
+                    <div class="details hidden">
                         <p><strong>Suitable for:</strong> Gardening Enthusiasts</p>
                         <p><strong>Details:</strong> Ideal for growing plants and flowers.</p>
-                        <a href="https://example.com/gardening-kits" target="_blank" class="buy-button" disabled>Buy Now</a>
+                        <a href="https://example.com/gardening-kits" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Corporate Gifts</h3>
+                    <p>Elegant and professional gifts for corporate events and clients.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Corporate Events and Clients</p>
+                        <p><strong>Details:</strong> Ideal for showing appreciation and building business relationships.</p>
+                        <a href="https://example.com/corporate-gifts" target="_blank" class="buy-button">Explore</a>
                     </div>
                 </div>
             </div>
-            <div class="guide-tab">
-                <a href="guide.html">Need Help? Get Your Gifting Guide</a>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Corporate Gifting Ideas</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Executive Pen Sets</h3>
+                    <p>Elegant pen sets for professionals.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Executives and Professionals</p>
+                        <p><strong>Details:</strong> Ideal for corporate gifting.</p>
+                        <a href="https://example.com/executive-pen-sets" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Customized Notebooks</h3>
+                    <p>Personalized notebooks for meetings and notes.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Office Staff</p>
+                        <p><strong>Details:</strong> Perfect for daily use.</p>
+                        <a href="https://example.com/customized-notebooks" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Desk Organizers</h3>
+                    <p>Stylish organizers for a tidy workspace.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Office Workers</p>
+                        <p><strong>Details:</strong> Keeps desks neat and organized.</p>
+                        <a href="https://example.com/desk-organizers" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Corporate Gift Baskets</h3>
+                    <p>Assorted gift baskets for clients and employees.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Clients and Employees</p>
+                        <p><strong>Details:</strong> Perfect for special occasions.</p>
+                        <a href="https://example.com/corporate-gift-baskets" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="stay-in-touch">
-            <h2>Stay in Touch</h2>
-            <p>Subscribe to our newsletter for the latest gift trends, offers, and new ideas.</p>
-            <form>
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </div>
-    <footer>
-        <p>© 2025 Gift Guru. All Rights Reserved.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Wedding Ideas</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Personalized Wedding Favors</h3>
+                    <p>Custom gifts for wedding guests.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Wedding Guests</p>
+                        <p><strong>Details:</strong> Memorable keepsakes for attendees.</p>
+                        <a href="https://example.com/personalized-wedding-favors" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Bridal Party Gifts</h3>
+                    <p>Special gifts for bridesmaids and groomsmen.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Bridal Party</p>
+                        <p><strong>Details:</strong> Thoughtful gifts for the wedding party.</p>
+                        <a href="https://example.com/bridal-party-gifts" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Wedding Keepsakes</h3>
+                    <p>Beautiful keepsakes for the couple.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Newlyweds</p>
+                        <p><strong>Details:</strong> Cherished memories of the big day.</p>
+                        <a href="https://example.com/wedding-keepsakes" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+                <div class="trend-card bg-white p-4 rounded shadow hover:bg-golden-500 hover:text-white transition duration-300">
+                    <h3 class="text-xl font-bold mb-2">Honeymoon Packages</h3>
+                    <p>Exclusive packages for a memorable honeymoon.</p>
+                    <div class="details hidden">
+                        <p><strong>Suitable for:</strong> Newlyweds</p>
+                        <p><strong>Details:</strong> Romantic getaways for the couple.</p>
+                        <a href="https://example.com/honeymoon-packages" target="_blank" class="buy-button">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-golden-500 text-white p-4 text-center">
+        <p>&copy; 2023 Gift Guru. All rights reserved.</p>
     </footer>
-    <script src="scripts.js" defer nonce="abc123"></script>
+    <script>
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        document.getElementById('search-button').addEventListener('click', function() {
+            var search = document.getElementById('mobile-search');
+            search.classList.toggle('hidden');
+        });
+
+        // Carousel functionality
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+        const totalItems = items.length;
+
+        function showNextItem() {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalItems;
+            items[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextItem, 3000);
+
+        // Slideshow functionality
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dot-active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " dot-active";
+        }
+    </script>
 </body>
 </html>

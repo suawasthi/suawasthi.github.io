@@ -3,250 +3,414 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Guru - Gifting Guide</title>
-    <meta name="description" content="Explore our comprehensive gifting guide at Gift Guru. Get personalized gift recommendations based on your preferences.">
-    <meta name="keywords" content="gifting guide, personalized gifts, gift recommendations, thoughtful gifts">
-    <meta name="author" content="Gift Guru">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com; 'nonce-abc123';">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <link rel="stylesheet" href="guide-styles.css">
+    <title>Gifting Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 1000;
-            padding: 0;
-            background: url('./pexels-wordsurfer-842876.jpg') no-repeat center center/cover;
-            color: #333;
-            transition: background 0.8s ease-in-out;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        .bg-golden-500 {
+            background-color: #4fa095; /* Golden color */
         }
-        header {
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
+        .text-golden-500 {
+            color: #FFD700; /* Golden color */
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-        }
-        nav {
-            background-color: #fff;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .modal {
+            display: none;
             position: fixed;
-            top: 0; /* Adjust based on header height */
+            z-index: 50;
+            left: 0;
+            top: 0;
             width: 100%;
-            z-index: 999;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        nav a {
-            color: #d4af37; /* Changed to golden */
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
             text-decoration: none;
-            font-weight: bold;
-            margin: 0 1.5rem;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-        nav a img {
-            margin-right: 0.5rem;
-            width: 20px;
-            height: 20px;
-        }
-        nav a:hover {
-            color: #b8860b; /* Darker golden for hover */
-        }
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-            max-width: 450px;
-            width: 90%;
-            margin: 2rem auto;
-        }
-        .manifest {
-            background: #d4af37; /* Changed to golden */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 160px;
-            height: 160px;
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-            border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
-            margin: 20px auto;
-            box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.3);
         }
-        .manifest:hover {
-            background: #b8860b; /* Darker golden for hover */
-            transform: scale(1.1);
+        .question {
+            display: none;
         }
-        button {
-            background: #d4af37; /* Changed to golden */
-            padding: 14px 22px;
-            margin: 12px;
-            border: none;
-            color: white;
-            border-radius: 50%; /* Changed to circular */
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 18px;
-            width: 100px; /* Fixed width */
-            height: 100px; /* Fixed height */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        .question.active {
+            display: block;
         }
-        button:hover {
-            background: #b8860b; /* Darker golden for hover */
-            transform: scale(1.05);
+        .question img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-        #options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        h3 {
-            color: #d4af37; /* Changed to golden */
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: auto;
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            nav a { display: block; margin: 0.5rem 0; }
-            .container {
-                padding: 20px;
-            }
-            .manifest {
-                width: 120px;
-                height: 120px;
-                font-size: 18px;
-            }
-            button {
-                width: 80px;
-                height: 80px;
-                font-size: 16px;
-            }
-        }
-        @media (min-width: 601px) {
-            .container {
-                padding: 40px;
-            }
-            .manifest {
-                width: 160px;
-                height: 160px;
-                font-size: 22px;
-            }
-            button {
-                width: 100px;
-                height: 100px;
-                font-size: 18px;
-            }
-        }
-        .stay-in-touch {
-            text-align: center;
-            background-color: #f9f9f9;
-            padding: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #ddd;
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-        .stay-in-touch h2 {
-            color: #d4af37;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        .stay-in-touch p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-        .stay-in-touch form {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .stay-in-touch input[type="email"] {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 250px;
-        }
-        .stay-in-touch button {
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
             background-color: #d4af37;
             color: white;
-            padding: 0.5rem 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            white-space: nowrap; /* Ensure text doesn't overflow */
+            width: 100%;
         }
-        .stay-in-touch button:hover {
-            background-color: #b8860b;
+        .option:hover {
+            background-color: #c49b2e;
         }
-        .content {
-            margin-top: 6rem; /* Adjust based on header and nav height */
-            padding: 2rem;
+        .recommendations {
+            display: none;
+        }
+        .recommendations.active {
+            display: block;
         }
     </style>
 </head>
-<body id="body">
-    <header>
-        <h1>Gift Guru</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#trending">Trending Ideas</a>
-        <a href="guide.html">Gifting Guide</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-      
-    </nav>
-    <div class="container" id="quiz-container">
-        <div id="start-screen">
-            <div class="manifest" id="start-guide">Start Guide</div>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-golden-500 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <h1 class="text-3xl font-bold">Gift Guru</h1>
         </div>
-        <div id="quiz-screen" style="display: none;">
-            <h3 id="question-text"></h3>
-            <div id="options"></div>
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-white hover:underline"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="text-white hover:underline"><i class="fas fa-lightbulb"></i> Trending Ideas</a></li>
+                <li><a href="guide.html" class="text-white hover:underline"><i class="fas fa-gift"></i> Gifting Guide</a></li>
+                <li><a href="about.html" class="text-white hover:underline"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="contact.html" class="text-white hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="blog.html" class="text-white hover:underline"><i class="fas fa-blog"></i> Blog</a></li>
+            </ul>
+        </nav>
+        <div class="md:hidden flex items-center">
+            <button id="menu-button" class="text-white focus:outline-none mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <button id="search-button" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="hidden md:flex items-center">
+            <input type="text" placeholder="Search..." class="p-2 rounded">
+            <button class="bg-yellow-600 text-white p-2 rounded ml-2">Search</button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="hidden md:hidden bg-golden-500 text-white">
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="index.html" class="hover:underline"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="hover:underline"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="services.html" class="hover:underline"><i class="fas fa-gift"></i> Services</a></li>
+            <li><a href="contact.html" class="hover:underline"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+    <div id="mobile-search" class="hidden md:hidden p-4">
+        <input type="text" placeholder="Search..." class="p-2 rounded w-full">
+    </div>
+    <main class="p-4 flex-grow">
+        <section class="mb-8 text-center">
+            <h2 class="text-3xl font-semibold mb-4 text-golden-500">Gifting Guide</h2>
+            <p class="text-lg">This is the Gifting Guide page. Here you can add information about gifting tips and ideas.</p>
+            <button id="start-guide" class="bg-golden-500 text-white p-2 rounded">Start Guide</button>
+            <button id="write-description" class="bg-golden-500 text-white p-2 rounded ml-2">Write Description</button>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Gifting Tips</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Personalized Gifts</h3>
+                    <p class="text-lg">Personalized gifts are always appreciated. Consider adding a personal touch to your gifts.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Hobbies and Interests</h3>
+                    <p class="text-lg">Think about the recipient's hobbies and interests when choosing a gift.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Eco-Friendly Options</h3>
+                    <p class="text-lg">Consider eco-friendly gifts that are sustainable and environmentally friendly.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">DIY Gifts</h3>
+                    <p class="text-lg">DIY gifts can be a great way to show your creativity and thoughtfulness.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-golden-500 text-white p-4 text-center">
+        <p>&copy; 2025 Gift Guru. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Modal for Guide -->
+    <div id="guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-semibold mb-4">Gift Description Guide</h2>
+            <div id="questions-container">
+                <div class="question active" data-question="0">
+                    <img src="./pexels-wordsurfer-842876.jpg" alt="Background">
+                    <p class="text-lg">Which gender are you looking to gift?</p>
+                    <button class="option" data-answer="Male">Male</button>
+                    <button class="option" data-answer="Female">Female</button>
+                    <button class="option" data-answer="Skip">Skip</button>
+                </div>
+                <div class="question" data-question="1">
+                    <img src="./pexels-wordsurfer-842876.jpg" alt="Background">
+                    <p class="text-lg">What age group are you looking to gift?</p>
+                    <button class="option" data-answer="Under 10">Under 10</button>
+                    <button class="option" data-answer="Under 20">Under 20</button>
+                    <button class="option" data-answer="Under 30">Under 30</button>
+                </div>
+                <div class="question" data-question="2">
+                    <img src="./pexels-wordsurfer-842876.jpg" alt="Background">
+                    <p class="text-lg">What is the occasion?</p>
+                    <button class="option" data-answer="Birthday">Birthday</button>
+                    <button class="option" data-answer="Anniversary">Anniversary</button>
+                    <button class="option" data-answer="Festival">Festival</button>
+                </div>
+                <div class="question" data-question="3">
+                    <img src="./pexels-wordsurfer-842876.jpg" alt="Background">
+                    <p class="text-lg">What is the recipient's hobby?</p>
+                    <button class="option" data-answer="Reading">Reading</button>
+                    <button class="option" data-answer="Sports">Sports</button>
+                    <button class="option" data-answer="Music">Music</button>
+                    <button class="option" data-answer="Art">Art</button>
+                </div>
+                <div class="question" data-question="4">
+                    <img src="./pexels-wordsurfer-842876.jpg" alt="Background">
+                    <p class="text-lg">What is your budget?</p>
+                    <button class="option" data-answer="Under $20">Under $20</button>
+                    <button class="option" data-answer="$20-$50">$20-$50</button>
+                    <button class="option" data-answer="$50-$100">$50-$100</button>
+                    <button class="option" data-answer="Above $100">Above $100</button>
+                </div>
+                <div class="question" data-question="5">
+                    <p class="text-lg">Thank you! Your responses have been recorded.</p>
+                </div>
+            </div>
+            <div id="recommendations" class="recommendations">
+                <h3 class="text-2xl font-semibold mb-4">Recommended Gifts</h3>
+                <ul id="recommendations-list" class="text-left"></ul>
+            </div>
         </div>
     </div>
 
-   
-    <footer>
-        <p>© 2025 Gift Guru. All Rights Reserved.</p>
-    </footer>
+    <!-- Modal for Writing Description -->
+    <div id="description-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-semibold mb-4">Write Gift Description</h2>
+            <form id="description-form">
+                <div class="mb-4">
+                    <label for="description" class="block text-lg font-bold mb-2">Gift Description</label>
+                    <textarea id="description" name="description" rows="4" class="p-2 border rounded w-full" required></textarea>
+                </div>
+                <button type="submit" class="bg-golden-500 text-white p-2 rounded">Submit</button>
+            </form>
+        </div>
+    </div>
 
-    <script src="scripts.js" defer nonce="abc123"></script>
+    <script>
+        let answers = {};
+
+        document.getElementById('start-guide').addEventListener('click', function() {
+            resetQuiz();
+            document.getElementById('guide-modal').style.display = 'block';
+        });
+
+        document.getElementById('write-description').addEventListener('click', function() {
+            document.getElementById('description-modal').style.display = 'block';
+        });
+
+        document.querySelectorAll('.close').forEach(function(element) {
+            element.addEventListener('click', function() {
+                document.getElementById('guide-modal').style.display = 'none';
+                document.getElementById('description-modal').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('guide-modal')) {
+                document.getElementById('guide-modal').style.display = 'none';
+            }
+            if (event.target == document.getElementById('description-modal')) {
+                document.getElementById('description-modal').style.display = 'none';
+            }
+        });
+
+        document.querySelectorAll('.option').forEach(function(element) {
+            element.addEventListener('click', function() {
+                const question = element.closest('.question').querySelector('p').textContent;
+                answers[question] = element.getAttribute('data-answer');
+                var currentQuestion = document.querySelector('.question.active');
+                var nextQuestion = currentQuestion.nextElementSibling;
+                if (nextQuestion) {
+                    currentQuestion.classList.remove('active');
+                    nextQuestion.classList.add('active');
+                } else {
+                    showRecommendations();
+                }
+            });
+        });
+
+        function resetQuiz() {
+            answers = {};
+            document.querySelectorAll('.question').forEach(function(element, index) {
+                element.classList.remove('active');
+                if (index === 0) {
+                    element.classList.add('active');
+                }
+            });
+            document.getElementById('recommendations').classList.remove('active');
+        }
+
+        function showRecommendations() {
+            const recommendations = getSuggestions(answers);
+            const recommendationsList = document.getElementById('recommendations-list');
+            recommendationsList.innerHTML = '';
+            recommendations.forEach(function(recommendation) {
+                const li = document.createElement('li');
+                li.textContent = `${recommendation.name}: ${recommendation.description}`;
+                recommendationsList.appendChild(li);
+            });
+            document.getElementById('recommendations').classList.add('active');
+        }
+
+        function getSuggestions(selections) {
+            const gender = selections["Which gender are you looking to gift?"] || "Neutral";
+            const age = selections["What age group are you looking to gift?"] || "20-30";
+            const occasion = selections["What is the occasion?"] || "Just Because";
+
+            const suggestions = [];
+
+            // Logic for real gift suggestions based on selections
+            if (gender === "Male" || gender === "Neutral") {
+                if (age === "Under 10") {
+                    suggestions.push({ name: "LEGO Building Set", description: "A fun and creative toy for kids." });
+                    suggestions.push({ name: "Superhero Action Figure", description: "Perfect for imaginative play." });
+                    suggestions.push({ name: "Remote Control Car", description: "Exciting and fun for young boys." });
+                    suggestions.push({ name: "Puzzle Game", description: "Engaging and educational." });
+                    suggestions.push({ name: "Toy Train Set", description: "Classic and entertaining." });
+                } else if (age === "10-20") {
+                    suggestions.push({ name: "Gaming Headset", description: "Great for teen gamers." });
+                    suggestions.push({ name: "Sports Water Bottle", description: "Stylish and practical for active teens." });
+                    suggestions.push({ name: "Bluetooth Speaker", description: "Portable and perfect for music lovers." });
+                    suggestions.push({ name: "Graphic T-Shirt", description: "Trendy and comfortable." });
+                    suggestions.push({ name: "Skateboard", description: "Fun and adventurous." });
+                } else if (age === "20-30") {
+                    suggestions.push({ name: "Leather Wallet", description: "A sleek, everyday essential." });
+                    suggestions.push({ name: "Craft Beer Kit", description: "For the beer enthusiast." });
+                    suggestions.push({ name: "Fitness Tracker", description: "Ideal for health-conscious individuals." });
+                    suggestions.push({ name: "Portable Charger", description: "Convenient for on-the-go." });
+                    suggestions.push({ name: "Smart Home Device", description: "Modern and useful." });
+                } else if (age === "30+") {
+                    suggestions.push({ name: "Grilling Tool Set", description: "Perfect for BBQ lovers." });
+                    suggestions.push({ name: "Smartwatch", description: "A tech-savvy gift for adults." });
+                    suggestions.push({ name: "Luxury Shaving Kit", description: "A premium grooming experience." });
+                    suggestions.push({ name: "Personalized Leather Wallet", description: "Stylish and practical." });
+                    suggestions.push({ name: "Bluetooth Earbuds", description: "Compact and wireless." });
+                }
+            }
+
+            if (gender === "Female" || gender === "Neutral") {
+                if (age === "Under 10") {
+                    suggestions.push({ name: "DIY Jewelry Kit", description: "Spark creativity with beads and charms." });
+                    suggestions.push({ name: "Stuffed Animal", description: "A cuddly companion for kids." });
+                    suggestions.push({ name: "Art Supplies Set", description: "Encourage artistic expression." });
+                    suggestions.push({ name: "Personalized Puzzle", description: "Fun and personal." });
+                    suggestions.push({ name: "Toy Kitchen Set", description: "Imaginative play for young chefs." });
+                } else if (age === "10-20") {
+                    suggestions.push({ name: "Skincare Gift Set", description: "Gentle products for teens." });
+                    suggestions.push({ name: "Polaroid Camera", description: "Capture memories in style." });
+                    suggestions.push({ name: "Fashion Accessories", description: "Trendy items for young fashionistas." });
+                    suggestions.push({ name: "Customized Jewelry", description: "Personalized and meaningful." });
+                    suggestions.push({ name: "Bluetooth Earbuds", description: "Compact and wireless." });
+                } else if (age === "20-30") {
+                    suggestions.push({ name: "Aromatherapy Diffuser", description: "Relaxation for busy adults." });
+                    suggestions.push({ name: "Statement Necklace", description: "A bold accessory for any occasion." });
+                    suggestions.push({ name: "Yoga Mat", description: "Perfect for fitness enthusiasts." });
+                    suggestions.push({ name: "Cookbook", description: "For the culinary enthusiast." });
+                    suggestions.push({ name: "Instant Camera", description: "Capture memories instantly." });
+                } else if (age === "30+") {
+                    suggestions.push({ name: "Luxury Candle Set", description: "Elegant scents for the home." });
+                    suggestions.push({ name: "Wine Subscription", description: "A treat for wine lovers." });
+                    suggestions.push({ name: "Spa Gift Basket", description: "Indulgent self-care items." });
+                    suggestions.push({ name: "Personalized Stationery", description: "Customized and elegant." });
+                    suggestions.push({ name: "Portable Power Bank", description: "Stylish and high-capacity." });
+                }
+            }
+
+            // Occasion-specific tweaks
+            if (occasion === "Birthday") {
+                suggestions.push({ name: "Personalized Cake Topper", description: "Make their day extra special." });
+                suggestions.push({ name: "Birthday Balloon Bouquet", description: "Festive and fun decoration." });
+            } else if (occasion === "Anniversary") {
+                suggestions.push({ name: "Custom Photo Frame", description: "A sentimental keepsake." });
+                suggestions.push({ name: "Couple's Massage Voucher", description: "A relaxing experience for two." });
+            } else if (occasion === "Festival") {
+                suggestions.push({ name: "Festive Gift Basket", description: "Filled with seasonal goodies." });
+                suggestions.push({ name: "Holiday Ornament Set", description: "Decorative and festive." });
+            } else {
+                suggestions.push({ name: "Handwritten Note Set", description: "A simple, heartfelt gesture." });
+                suggestions.push({ name: "Gourmet Chocolate Box", description: "Delicious and indulgent." });
+            }
+
+            // Additional suggestions
+            suggestions.push({ name: "Personalized Calendar", description: "Custom photo calendar with special memories." });
+            suggestions.push({ name: "Weighted Blanket", description: "Calming and comforting." });
+            suggestions.push({ name: "Personalized Cutting Board", description: "Custom engraved for cooking enthusiasts." });
+            suggestions.push({ name: "Wine Tasting Kit", description: "Selection of unique wines and tasting notes." });
+            suggestions.push({ name: "Indoor Plant", description: "Stylish and air-purifying." });
+            suggestions.push({ name: "Photo Book", description: "Hardcover book filled with memories." });
+            suggestions.push({ name: "Craft Beer Sampler", description: "Curated selection of craft beers." });
+            suggestions.push({ name: "Board Games or Card Games", description: "Fun for family and friends." });
+            suggestions.push({ name: "Cooking Class Voucher", description: "Learn new culinary skills." });
+            suggestions.push({ name: "Portable Speaker", description: "High-quality Bluetooth speaker." });
+            suggestions.push({ name: "Spa Day Package", description: "Day of pampering at a local spa." });
+            suggestions.push({ name: "Customized Mugs", description: "Personalized with a quirky message or photo." });
+            suggestions.push({ name: "VR Headset", description: "Immersive gaming or entertainment experience." });
+            suggestions.push({ name: "Personalized Recipe Box", description: "Engraved for organizing recipes." });
+            suggestions.push({ name: "Outdoor Adventure Kit", description: "Portable hammock, camping gear, or hiking accessories." });
+
+            return suggestions;
+        }
+
+        document.getElementById('guide-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Guide form submitted!');
+            document.getElementById('guide-modal').style.display = 'none';
+        });
+
+        document.getElementById('description-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Description form submitted!');
+            document.getElementById('description-modal').style.display = 'none';
+        });
+
+        document.getElementById('menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            var search = document.getElementById('mobile-search');
+            search.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
